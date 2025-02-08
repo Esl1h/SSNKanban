@@ -1,15 +1,16 @@
-  {
-    "identifier": "kanban board",
-    "name": "kanban board for Standard Notes",
-    "content_type": "SN|Component",
+{
+    "identifier": "sn-kanban",
+    "name": "Kanban board",
+    "content_type": "SN|Editor",
     "area": "editor",
     "version": "1.0.0",
     "description": "Um editor estilo Trello para o Standard Notes.",
     "url": "https://esl1h.github.io/SSNKanban/dist/index.html",
     "download_url": "https://esl1h.github.io/SSNKanban/package.json",
     "latest_url": "https://esl1h.github.io/SSNKanban/package.json",
+    "is_default": false,
+    "flags": ["allowEmptyEditor"],
     "permissions": {
       "api": true
     }
   }
-  
