@@ -1,0 +1,10 @@
+{
+    "identifier": "kanban board",
+    "name": "Kanban Board",
+    "content_type": "SN|Editor",
+    "area": "editor",
+    "version": "1.0.0",
+    "description": "Um editor estilo Trello para o Standard Notes.",
+    "url": "https://local.host/index.html"
+  }
+  

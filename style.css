@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+#board {
+    display: flex;
+    gap: 20px;
+}
+
+.column {
+    background: white;
+    padding: 10px;
+    width: 200px;
+    min-height: 300px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.column h2 {
+    text-align: center;
+}
+
+.card {
+    background: #dfe3e6;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: grab;
+}
