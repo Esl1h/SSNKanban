@@ -1,6 +1,6 @@
 {
-    "identifier": "sn-kanban",
-    "name": "Kanban board",
+    "identifier": "@standardnotes/kanban",
+    "name": "Kanban Board",
     "content_type": "SN|Editor",
     "area": "editor",
     "version": "1.0.0",
