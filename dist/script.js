@@ -1,28 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
     const columns = document.querySelectorAll(".column");
 
-    // Função para salvar o estado do quadro no Standard Notes
     function saveBoardState() {
         const boardState = {};
         columns.forEach(column => {
             boardState[column.id] = Array.from(column.children)
-                .filter(card => card.classList.contains("card")) // Evita capturar headers
+                .filter(card => card.classList.contains("card"))
                 .map(card => card.innerText);
         });
 
         const message = {
-            action: "save",
-            content: JSON.stringify(boardState)
+            action: "set-data",
+            data: JSON.stringify(boardState)
         };
-        window.parent.postMessage(message, "*"); // Envia para o Standard Notes
+        window.parent.postMessage(message, "*");
     }
 
-    // Função para carregar o estado salvo
     function loadBoardState(savedState) {
         if (!savedState) return;
         const boardState = JSON.parse(savedState);
         columns.forEach(column => {
-            column.innerHTML = `<h2>${column.id.replace("-", " ")}</h2>`; // Mantém o título da coluna
+            column.innerHTML = `<h2>${column.id.replace("-", " ")}</h2>`;
             if (boardState[column.id]) {
                 boardState[column.id].forEach(task => {
                     const card = createCard(task);
@@ -30,10 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
         });
-        addDragAndDropEvents(); // Reaplica eventos de drag-and-drop
+        addDragAndDropEvents();
     }
 
-    // Cria um novo card
     function createCard(text) {
         const card = document.createElement("div");
         card.classList.add("card");
@@ -42,13 +39,12 @@ document.addEventListener("DOMContentLoaded", () => {
         return card;
     }
 
-    // Adiciona eventos de drag-and-drop aos cards
     function addDragAndDropEvents() {
         document.querySelectorAll(".card").forEach(card => {
             card.addEventListener("dragstart", () => card.classList.add("dragging"));
             card.addEventListener("dragend", () => {
                 card.classList.remove("dragging");
-                saveBoardState(); // Salva após mover o card
+                saveBoardState();
             });
         });
 
@@ -61,13 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Recebe dados salvos do Standard Notes
     window.addEventListener("message", (event) => {
-        if (event.data && event.data.action === "load") {
-            loadBoardState(event.data.content);
+        if (event.data && event.data.action === "get-data") {
+            loadBoardState(event.data.data);
         }
     });
 
-    // Solicita dados salvos ao abrir a extensão
     window.parent.postMessage({ action: "request-data" }, "*");
 });
